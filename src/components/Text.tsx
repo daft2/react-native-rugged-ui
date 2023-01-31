@@ -7,8 +7,8 @@ type TextProps = SpacingProps &
   React.ComponentProps<typeof RNText> & {
     color?: string;
     bgColor?: string;
-    fontSize?: string;
-    variants?: "h1" | "h2" | "h3" | "h4" | "h5" | "default";
+    fontSize?: number | undefined;
+    variants?: "h1" | "h2" | "h3" | "h4" | "h5" | "s1" | "s2" | "p" | "none";
     weight?:
       | "bold"
       | "normal"
@@ -22,13 +22,15 @@ type TextProps = SpacingProps &
       | "800"
       | "900"
       | undefined;
+    fontFamily?: string;
     children: React.ReactNode;
   };
 
 type TextVariantsProps = {
   [key: string]: {
-    fontSize: number;
+    fontSize?: number;
     lineHeight?: number;
+    fontFamily?: string;
   };
 };
 
@@ -49,34 +51,53 @@ const Text = ({
   ml = "none",
   color = "black",
   bgColor = "transparent",
-  variants = "default",
-  weight = "normal",
+  variants = "none",
+  weight,
+  fontFamily = "satoshi",
+  fontSize,
   ...props
 }: TextProps) => {
   const textVariants: TextVariantsProps = {
     h1: {
       fontSize: 48,
-      lineHeight: 60,
+      lineHeight: 52,
+      fontFamily: "satoshi-bold",
     },
     h2: {
       fontSize: 36,
-      lineHeight: 46,
+      lineHeight: 40,
+      fontFamily: "satoshi-bold",
     },
     h3: {
       fontSize: 30,
-      lineHeight: 38,
+      lineHeight: 34,
+      fontFamily: "satoshi-bold",
     },
     h4: {
       fontSize: 24,
-      lineHeight: 30,
+      lineHeight: 28,
+      fontFamily: "satoshi-bold",
     },
     h5: {
       fontSize: 20,
       lineHeight: 24,
+      fontFamily: "satoshi-bold",
     },
-    default: {
-      fontSize: 14,
+    s1: {
+      fontSize: 24,
+      lineHeight: 26,
+      fontFamily: "satoshi-medium",
     },
+    s2: {
+      fontSize: 18,
+      lineHeight: 22,
+      fontFamily: "satoshi-medium",
+    },
+    p: {
+      fontSize: 16,
+      fontFamily: "satoshi",
+    },
+    none: {},
   };
 
   return (
@@ -106,6 +127,8 @@ const Text = ({
             color: color,
             backgroundColor: bgColor,
             fontWeight: weight,
+            fontFamily: fontFamily,
+            fontSize: fontSize,
             ...textVariants[variants],
           },
         ]}
