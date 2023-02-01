@@ -103,6 +103,7 @@ const Text = ({
   return (
     <View>
       <RNText
+        {...props}
         style={[
           props.style,
           // Spacing Styling
