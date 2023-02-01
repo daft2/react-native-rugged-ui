@@ -3,9 +3,9 @@ import { View } from "../components/Themed";
 import { RootTabScreenProps } from "../../types";
 import Text from "../components/Text";
 
-export default function TabOneScreen({
+export default function TypographyScreen({
   navigation
-}: RootTabScreenProps<"TabOne">) {
+}: RootTabScreenProps<"Typography">) {
   return (
     <View style={styles.container}>
       <Text variants="h4" mb="sm">
