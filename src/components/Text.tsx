@@ -61,43 +61,43 @@ const Text = ({
     h1: {
       fontSize: 48,
       lineHeight: 52,
-      fontFamily: "satoshi-bold",
+      fontFamily: "satoshi-bold"
     },
     h2: {
       fontSize: 36,
       lineHeight: 40,
-      fontFamily: "satoshi-bold",
+      fontFamily: "satoshi-bold"
     },
     h3: {
       fontSize: 30,
       lineHeight: 34,
-      fontFamily: "satoshi-bold",
+      fontFamily: "satoshi-bold"
     },
     h4: {
       fontSize: 24,
       lineHeight: 28,
-      fontFamily: "satoshi-bold",
+      fontFamily: "satoshi-bold"
     },
     h5: {
       fontSize: 20,
       lineHeight: 24,
-      fontFamily: "satoshi-bold",
+      fontFamily: "satoshi-bold"
     },
     s1: {
       fontSize: 24,
       lineHeight: 26,
-      fontFamily: "satoshi-medium",
+      fontFamily: "satoshi-medium"
     },
     s2: {
       fontSize: 18,
       lineHeight: 22,
-      fontFamily: "satoshi-medium",
+      fontFamily: "satoshi-medium"
     },
     p: {
       fontSize: 16,
-      fontFamily: "satoshi",
+      fontFamily: "satoshi"
     },
-    none: {},
+    none: {}
   };
 
   return (
@@ -120,7 +120,7 @@ const Text = ({
             marginTop: Theme.spacing[mt],
             marginRight: Theme.spacing[mr],
             marginBottom: Theme.spacing[mb],
-            marginLeft: Theme.spacing[ml],
+            marginLeft: Theme.spacing[ml]
           },
           // Text Styling
           {
@@ -129,8 +129,8 @@ const Text = ({
             fontWeight: weight,
             fontFamily: fontFamily,
             fontSize: fontSize,
-            ...textVariants[variants],
-          },
+            ...textVariants[variants]
+          }
         ]}
       >
         {props.children}

@@ -4,7 +4,7 @@ import { RootTabScreenProps } from "../../types";
 import Text from "../components/Text";
 
 export default function TabOneScreen({
-  navigation,
+  navigation
 }: RootTabScreenProps<"TabOne">) {
   return (
     <View style={styles.container}>
@@ -46,6 +46,6 @@ export default function TabOneScreen({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
-  },
+    padding: 10
+  }
 });
