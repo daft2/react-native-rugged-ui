@@ -1,3 +1,4 @@
+import React from "react";
 import { Button as RNButton, StyleSheet, View } from "react-native";
 import Button from "../components/Button";
 import Text from "../components/Text";

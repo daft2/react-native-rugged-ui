@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native";
 import { View } from "../components/Themed";
 import { RootTabScreenProps } from "../../types";
 import Text from "../components/Text";
+import React from "react";
 
 export default function TypographyScreen({
   navigation
@@ -11,9 +12,7 @@ export default function TypographyScreen({
       <Text variants="h4" mb="sm">
         Heading
       </Text>
-      <Text variants="h1" weight="bold">
-        Heading 1
-      </Text>
+      <Text variants="h1">Heading 1</Text>
       <Text variants="h2">Heading 2</Text>
       <Text variants="h3">Heading 3</Text>
       <Text variants="h4">Heading 4</Text>
