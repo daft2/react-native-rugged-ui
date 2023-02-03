@@ -19,7 +19,6 @@ export default function useCachedResources({ fonts }: CacheResourcesType) {
         // Load fonts
         await Font.loadAsync({
           ...FontAwesome.font,
-          "space-mono": require("../assets/fonts/SpaceMono-Regular.ttf"),
           satoshi: require("../assets/fonts/Satoshi-Regular.otf"),
           "satoshi-medium": require("../assets/fonts/Satoshi-Medium.otf"),
           "satoshi-bold": require("../assets/fonts/Satoshi-Bold.otf"),
