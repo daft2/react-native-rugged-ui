@@ -6,7 +6,7 @@ import { ThemeProvider } from "./src/provider/ThemeProvider";
 
 export default function App() {
   return (
-    <ThemeProvider theme="light">
+    <ThemeProvider>
       <SafeAreaProvider>
         <StatusBar />
         <Navigation />
