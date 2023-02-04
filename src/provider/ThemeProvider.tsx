@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { ActivityIndicator, View } from "react-native";
 import useCachedResources from "../hooks/useCachedResources";
+import Theme from "../styles/Theme";
 
 type ContextProps = {
   theme: "light" | "dark";
+  spacing?: typeof Theme["spacing"];
+  colors?: typeof Theme["colors"];
   setTheme?: (theme: "light" | "dark") => void;
   isDarkMode?: boolean;
   fonts?: any;
