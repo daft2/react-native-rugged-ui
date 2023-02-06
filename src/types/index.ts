@@ -134,3 +134,24 @@ export type SpacingProps = {
     | "4xl"
     | "5xl";
 };
+
+export type ColorsOptions =
+  | "red"
+  | "orange"
+  | "yellow"
+  | "green"
+  | "blue"
+  | "violet"
+  | "purple"
+  | "pink"
+  | "white"
+  | "black"
+  | "dark"
+  | "neutral"
+  | "stone"
+  | "charcoal"
+  | "info"
+  | "danger"
+  | "warning"
+  | "success"
+  | "transparent";
