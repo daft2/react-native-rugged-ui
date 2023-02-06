@@ -1,7 +1,7 @@
 import { View, Text as RNText } from "react-native";
 import React from "react";
 import { SpacingProps } from "../types";
-import Theme from "../styles/Theme";
+import { useTheme } from "../provider/ThemeProvider";
 
 type TextProps = SpacingProps &
   React.ComponentProps<typeof RNText> & {
@@ -57,6 +57,7 @@ const Text = ({
   fontSize,
   ...props
 }: TextProps) => {
+  const { spacing } = useTheme();
   const textVariants: TextVariantsProps = {
     h1: {
       fontSize: 48,
@@ -99,7 +100,6 @@ const Text = ({
     },
     none: {}
   };
-
   return (
     <View>
       <RNText
@@ -108,20 +108,20 @@ const Text = ({
           props.style,
           // Spacing Styling
           {
-            padding: Theme.spacing[p],
-            paddingHorizontal: Theme.spacing[px],
-            paddingVertical: Theme.spacing[py],
-            paddingTop: Theme.spacing[pt],
-            paddingRight: Theme.spacing[pr],
-            paddingBottom: Theme.spacing[pb],
-            paddingLeft: Theme.spacing[pl],
-            margin: Theme.spacing[m],
-            marginHorizontal: Theme.spacing[mx],
-            marginVertical: Theme.spacing[my],
-            marginTop: Theme.spacing[mt],
-            marginRight: Theme.spacing[mr],
-            marginBottom: Theme.spacing[mb],
-            marginLeft: Theme.spacing[ml]
+            padding: spacing[p],
+            paddingHorizontal: spacing[px],
+            paddingVertical: spacing[py],
+            paddingTop: spacing[pt],
+            paddingRight: spacing[pr],
+            paddingBottom: spacing[pb],
+            paddingLeft: spacing[pl],
+            margin: spacing[m],
+            marginHorizontal: spacing[mx],
+            marginVertical: spacing[my],
+            marginTop: spacing[mt],
+            marginRight: spacing[mr],
+            marginBottom: spacing[mb],
+            marginLeft: spacing[ml]
           },
           // Text Styling
           {
