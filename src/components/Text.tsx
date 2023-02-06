@@ -1,12 +1,12 @@
 import { View, Text as RNText } from "react-native";
 import React from "react";
-import { SpacingProps } from "../types";
+import { ColorsOptions, SpacingProps } from "../types";
 import { useTheme } from "../provider/ThemeProvider";
 
 type TextProps = SpacingProps &
   React.ComponentProps<typeof RNText> & {
-    color?: string;
-    bgColor?: string;
+    color?: ColorsOptions;
+    bgColor?: ColorsOptions;
     fontSize?: number | undefined;
     variants?: "h1" | "h2" | "h3" | "h4" | "h5" | "s1" | "s2" | "p" | "none";
     weight?:
@@ -57,7 +57,7 @@ const Text = ({
   fontSize,
   ...props
 }: TextProps) => {
-  const { spacing } = useTheme();
+  const { spacing, colors } = useTheme();
   const textVariants: TextVariantsProps = {
     h1: {
       fontSize: 48,
@@ -125,8 +125,8 @@ const Text = ({
           },
           // Text Styling
           {
-            color: color,
-            backgroundColor: bgColor,
+            color: colors[color],
+            backgroundColor: colors[bgColor],
             fontWeight: weight,
             fontFamily: fontFamily,
             fontSize: fontSize,
