@@ -32,7 +32,8 @@ const Theme = {
     info: "#083d77",
     danger: "#ff3c38",
     warning: "#F4D35E",
-    success: "#64F58D"
+    success: "#64F58D",
+    transparent: "transparent"
   }
 };
 
