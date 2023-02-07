@@ -1,7 +1,8 @@
-import { View, Text } from "react-native";
+import { View, TouchableNativeFeedback } from "react-native";
 import React from "react";
 import { SpacingProps } from "../types";
-import Theme from "../styles/Theme";
+import Text from "./Text";
+import { useTheme } from "../provider/ThemeProvider";
 
 type ButtonProps = SpacingProps &
   React.ComponentProps<typeof View> & {
@@ -26,42 +27,48 @@ const Button = ({
   mb = "none",
   ml = "none",
   title,
-  color = "blue",
+  color = "dark",
   textColor = "white",
   ...props
 }: ButtonProps) => {
+  const { spacing, colors } = useTheme();
+
   return (
-    <View
-      {...props}
-      style={[
-        props.style,
-        // Spacing Styling
-        {
-          padding: Theme.spacing[p],
-          paddingHorizontal: Theme.spacing[px],
-          paddingVertical: Theme.spacing[py],
-          paddingTop: Theme.spacing[pt],
-          paddingRight: Theme.spacing[pr],
-          paddingBottom: Theme.spacing[pb],
-          paddingLeft: Theme.spacing[pl],
-          margin: Theme.spacing[m],
-          marginHorizontal: Theme.spacing[mx],
-          marginVertical: Theme.spacing[my],
-          marginTop: Theme.spacing[mt],
-          marginRight: Theme.spacing[mr],
-          marginBottom: Theme.spacing[mb],
-          marginLeft: Theme.spacing[ml]
-        },
-        {
-          width: "100%",
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor: color
-        }
-      ]}
-    >
-      <Text style={{ color: textColor }}>{title}</Text>
-    </View>
+    <TouchableNativeFeedback>
+      <View
+        {...props}
+        style={[
+          props.style,
+          // Spacing Styling
+          {
+            padding: spacing[p],
+            paddingHorizontal: spacing[px],
+            paddingVertical: spacing[py],
+            paddingTop: spacing[pt],
+            paddingRight: spacing[pr],
+            paddingBottom: spacing[pb],
+            paddingLeft: spacing[pl],
+            margin: spacing[m],
+            marginHorizontal: spacing[mx],
+            marginVertical: spacing[my],
+            marginTop: spacing[mt],
+            marginRight: spacing[mr],
+            marginBottom: spacing[mb],
+            marginLeft: spacing[ml]
+          },
+          {
+            width: "100%",
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: colors[color]
+          }
+        ]}
+      >
+        <Text color="white" variants="h5">
+          {title}
+        </Text>
+      </View>
+    </TouchableNativeFeedback>
   );
 };
 
