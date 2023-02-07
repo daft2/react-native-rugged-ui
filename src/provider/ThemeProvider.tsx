@@ -10,7 +10,6 @@ type ContextProps = {
   colors: typeof Theme["colors"];
   setTheme?: (theme: "light" | "dark") => void;
   isDarkMode?: boolean;
-  fonts?: Record<string, FontSource>;
 };
 
 type ThemeProviderProps = {
