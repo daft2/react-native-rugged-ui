@@ -1,14 +1,14 @@
 import { View, TouchableNativeFeedback } from "react-native";
 import React from "react";
-import { SpacingProps } from "../types";
+import { ColorsOptions, SpacingProps } from "../types";
 import Text from "./Text";
 import { useTheme } from "../provider/ThemeProvider";
 
 type ButtonProps = SpacingProps &
   React.ComponentProps<typeof View> & {
     title: string;
-    color?: string;
-    textColor?: string;
+    color?: ColorsOptions;
+    textColor?: ColorsOptions;
   };
 
 const Button = ({
@@ -28,7 +28,7 @@ const Button = ({
   ml = "none",
   title,
   color = "dark",
-  textColor = "white",
+  textColor = "neutral",
   ...props
 }: ButtonProps) => {
   const { spacing, colors } = useTheme();
@@ -64,7 +64,7 @@ const Button = ({
           }
         ]}
       >
-        <Text color="white" variants="h5">
+        <Text color={textColor} variants="h5">
           {title}
         </Text>
       </View>
