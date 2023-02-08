@@ -34,6 +34,12 @@ const Theme = {
     warning: "#F4D35E",
     success: "#64F58D",
     transparent: "transparent"
+  },
+  fonts: {
+    Satoshi700: "satoshi-bold",
+    Switzer100: "switzer-light",
+    Switzer200: "switzer-medium",
+    Switzer300: "switzer-regular"
   }
 };
 
