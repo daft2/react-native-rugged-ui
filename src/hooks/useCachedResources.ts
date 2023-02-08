@@ -19,9 +19,10 @@ export default function useCachedResources({ fonts }: CacheResourcesType) {
         // Load fonts
         await Font.loadAsync({
           ...FontAwesome.font,
-          satoshi: require("../assets/fonts/Satoshi-Regular.otf"),
-          "satoshi-medium": require("../assets/fonts/Satoshi-Medium.otf"),
           "satoshi-bold": require("../assets/fonts/Satoshi-Bold.otf"),
+          "switzer-light": require("../assets/fonts/Switzer-Light.otf"),
+          "switzer-medium": require("../assets/fonts/Switzer-Medium.otf"),
+          "switzer-regular": require("../assets/fonts/Switzer-Regular.otf"),
           ...fonts
         });
       } catch (e) {
