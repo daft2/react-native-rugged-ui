@@ -57,46 +57,51 @@ const Text = ({
   fontSize,
   ...props
 }: TextProps) => {
-  const { spacing, colors } = useTheme();
+  const { spacing, colors, fonts } = useTheme();
   const textVariants: TextVariantsProps = {
     h1: {
-      fontSize: 48,
-      lineHeight: 52,
-      fontFamily: "satoshi-bold"
+      fontSize: 40,
+      fontFamily: fonts.Satoshi700
     },
     h2: {
-      fontSize: 36,
-      lineHeight: 40,
-      fontFamily: "satoshi-bold"
+      fontSize: 32,
+      fontFamily: fonts.Satoshi700
     },
     h3: {
-      fontSize: 30,
-      lineHeight: 34,
-      fontFamily: "satoshi-bold"
+      fontSize: 28,
+      fontFamily: fonts.Satoshi700
     },
     h4: {
-      fontSize: 24,
-      lineHeight: 28,
-      fontFamily: "satoshi-bold"
+      fontSize: 20,
+      fontFamily: fonts.Satoshi700
     },
     h5: {
-      fontSize: 20,
-      lineHeight: 24,
-      fontFamily: "satoshi-bold"
-    },
-    s1: {
-      fontSize: 24,
-      lineHeight: 26,
-      fontFamily: "satoshi-medium"
-    },
-    s2: {
-      fontSize: 18,
-      lineHeight: 22,
-      fontFamily: "satoshi-medium"
-    },
-    p: {
       fontSize: 16,
-      fontFamily: "satoshi"
+      fontFamily: fonts.Satoshi700
+    },
+    h6: {
+      fontSize: 12,
+      fontFamily: fonts.Satoshi700
+    },
+    subtitle1: {
+      fontSize: 20,
+      fontFamily: fonts.Switzer300
+    },
+    subtitle2: {
+      fontSize: 16,
+      fontFamily: fonts.Switzer300
+    },
+    paragraph1: {
+      fontSize: 16,
+      fontFamily: fonts.Switzer200
+    },
+    paragraph2: {
+      fontSize: 12,
+      fontFamily: fonts.Switzer200
+    },
+    paragraph3: {
+      fontSize: 10,
+      fontFamily: fonts.Switzer200
     },
     none: {}
   };
