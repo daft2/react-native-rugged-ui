@@ -8,20 +8,20 @@ type TextProps = SpacingProps &
     color?: ColorsOptions;
     bgColor?: ColorsOptions;
     fontSize?: number | undefined;
-    variants?: "h1" | "h2" | "h3" | "h4" | "h5" | "s1" | "s2" | "p" | "none";
-    weight?:
-      | "bold"
-      | "normal"
-      | "100"
-      | "200"
-      | "300"
-      | "400"
-      | "500"
-      | "600"
-      | "700"
-      | "800"
-      | "900"
-      | undefined;
+    variants?:
+      | "h1"
+      | "h2"
+      | "h3"
+      | "h4"
+      | "h5"
+      | "h6"
+      | "subtitle1"
+      | "subtitle2"
+      | "paragraph1"
+      | "paragraph2"
+      | "paragraph3"
+      | "none";
+    weight?: "light" | "medium" | "regular" | "bold" | undefined;
     fontFamily?: string;
     children: React.ReactNode;
   };
@@ -51,9 +51,9 @@ const Text = ({
   ml = "none",
   color = "black",
   bgColor = "transparent",
-  variants = "none",
-  weight,
-  fontFamily = "satoshi",
+  variants = "paragraph2",
+  weight = "medium",
+  fontFamily = "switzer-medium",
   fontSize,
   ...props
 }: TextProps) => {
@@ -102,9 +102,16 @@ const Text = ({
     paragraph3: {
       fontSize: 10,
       fontFamily: fonts.Switzer200
-    },
-    none: {}
+    }
   };
+
+  const weightMap = {
+    light: fonts.Switzer100,
+    medium: fonts.Switzer200,
+    regular: fonts.Switzer300,
+    bold: fonts.Satoshi700
+  };
+
   return (
     <View>
       <RNText
@@ -132,8 +139,7 @@ const Text = ({
           {
             color: colors[color],
             backgroundColor: colors[bgColor],
-            fontWeight: weight,
-            fontFamily: fontFamily,
+            fontFamily: weightMap[weight],
             fontSize: fontSize,
             ...textVariants[variants]
           }
