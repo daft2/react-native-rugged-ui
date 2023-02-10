@@ -1,4 +1,4 @@
-import { View, TouchableNativeFeedback } from "react-native";
+import { View, TouchableNativeFeedback, ViewStyle } from "react-native";
 import React from "react";
 import { ColorsOptions, SpacingProps } from "../types";
 import Text from "./Text";
@@ -9,15 +9,16 @@ type ButtonProps = SpacingProps &
     title: string;
     color?: ColorsOptions;
     textColor?: ColorsOptions;
-    shadowColor?: ColorsOptions;
     rounded?: "xs" | "sm" | "md" | "lg" | "xl" | "full" | "none";
+    shadowColor?: ColorsOptions;
     shadowPosition?: "bottom-right" | "bottom-left" | "top-right" | "top-left";
+    shadowStyle?: ViewStyle;
   };
 
 const Button = ({
   p = "none",
   px = "none",
-  py = "sm",
+  py = "none",
   pt = "none",
   pr = "none",
   pb = "none",
@@ -35,6 +36,7 @@ const Button = ({
   shadowColor = "black",
   rounded = "none",
   shadowPosition = "bottom-right",
+  shadowStyle,
   ...props
 }: ButtonProps) => {
   const { spacing, colors } = useTheme();
@@ -114,12 +116,12 @@ const Button = ({
         style={[
           {
             padding: spacing[p],
-            paddingHorizontal: spacing[px],
-            paddingVertical: spacing[py],
             paddingTop: spacing[pt],
             paddingRight: spacing[pr],
             paddingBottom: spacing[pb],
             paddingLeft: spacing[pl],
+            paddingHorizontal: spacing[px],
+            paddingVertical: spacing[py],
             margin: spacing[m],
             marginHorizontal: spacing[mx],
             marginVertical: spacing[my],
@@ -138,7 +140,8 @@ const Button = ({
             width: "100%",
             zIndex: -10,
             borderRadius: roundedMap[rounded]
-          }
+          },
+          { ...shadowStyle }
         ]}
       />
     </View>
