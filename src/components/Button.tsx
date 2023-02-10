@@ -73,8 +73,8 @@ const Button = ({
   };
 
   return (
-    <TouchableNativeFeedback>
-      <View style={{ position: "relative" }}>
+    <View style={{ position: "relative" }}>
+      <TouchableNativeFeedback>
         <View
           {...props}
           style={[
@@ -109,39 +109,39 @@ const Button = ({
             {title}
           </Text>
         </View>
-        <View
-          style={[
-            {
-              padding: spacing[p],
-              paddingHorizontal: spacing[px],
-              paddingVertical: spacing[py],
-              paddingTop: spacing[pt],
-              paddingRight: spacing[pr],
-              paddingBottom: spacing[pb],
-              paddingLeft: spacing[pl],
-              margin: spacing[m],
-              marginHorizontal: spacing[mx],
-              marginVertical: spacing[my],
-              marginTop: spacing[mt],
-              marginRight: spacing[mr],
-              marginBottom: spacing[mb],
-              marginLeft: spacing[ml]
-            },
-            {
-              ...shadowPositionMap[shadowPosition]
-            },
-            {
-              position: "absolute",
-              backgroundColor: colors[shadowColor],
-              borderWidth: 1,
-              width: "100%",
-              zIndex: -10,
-              borderRadius: roundedMap[rounded]
-            }
-          ]}
-        />
-      </View>
-    </TouchableNativeFeedback>
+      </TouchableNativeFeedback>
+      <View
+        style={[
+          {
+            padding: spacing[p],
+            paddingHorizontal: spacing[px],
+            paddingVertical: spacing[py],
+            paddingTop: spacing[pt],
+            paddingRight: spacing[pr],
+            paddingBottom: spacing[pb],
+            paddingLeft: spacing[pl],
+            margin: spacing[m],
+            marginHorizontal: spacing[mx],
+            marginVertical: spacing[my],
+            marginTop: spacing[mt],
+            marginRight: spacing[mr],
+            marginBottom: spacing[mb],
+            marginLeft: spacing[ml]
+          },
+          {
+            ...shadowPositionMap[shadowPosition]
+          },
+          {
+            position: "absolute",
+            backgroundColor: colors[shadowColor],
+            borderWidth: 1,
+            width: "100%",
+            zIndex: -10,
+            borderRadius: roundedMap[rounded]
+          }
+        ]}
+      />
+    </View>
   );
 };
 
