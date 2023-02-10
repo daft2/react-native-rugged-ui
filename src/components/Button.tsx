@@ -9,6 +9,8 @@ type ButtonProps = SpacingProps &
     title: string;
     color?: ColorsOptions;
     textColor?: ColorsOptions;
+    shadowColor?: ColorsOptions;
+    rounded?: "xs" | "sm" | "md" | "lg" | "xl" | "full" | "none";
   };
 
 const Button = ({
@@ -29,44 +31,90 @@ const Button = ({
   title,
   color = "dark",
   textColor = "neutral",
+  shadowColor = "black",
+  rounded = "none",
   ...props
 }: ButtonProps) => {
   const { spacing, colors } = useTheme();
 
+  const roundedMap = {
+    xs: 2,
+    sm: 4,
+    md: 8,
+    lg: 10,
+    xl: 20,
+    full: "100%",
+    none: undefined
+  };
+
   return (
     <TouchableNativeFeedback>
-      <View
-        {...props}
-        style={[
-          props.style,
-          // Spacing Styling
-          {
-            padding: spacing[p],
-            paddingHorizontal: spacing[px],
-            paddingVertical: spacing[py],
-            paddingTop: spacing[pt],
-            paddingRight: spacing[pr],
-            paddingBottom: spacing[pb],
-            paddingLeft: spacing[pl],
-            margin: spacing[m],
-            marginHorizontal: spacing[mx],
-            marginVertical: spacing[my],
-            marginTop: spacing[mt],
-            marginRight: spacing[mr],
-            marginBottom: spacing[mb],
-            marginLeft: spacing[ml]
-          },
-          {
-            width: "100%",
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: colors[color]
-          }
-        ]}
-      >
-        <Text color={textColor} variants="h5">
-          {title}
-        </Text>
+      <View style={{ position: "relative" }}>
+        <View
+          {...props}
+          style={[
+            props.style,
+            // Spacing Styling
+            {
+              padding: spacing[p],
+              paddingHorizontal: spacing[px],
+              paddingVertical: spacing[py],
+              paddingTop: spacing[pt],
+              paddingRight: spacing[pr],
+              paddingBottom: spacing[pb],
+              paddingLeft: spacing[pl],
+              margin: spacing[m],
+              marginHorizontal: spacing[mx],
+              marginVertical: spacing[my],
+              marginTop: spacing[mt],
+              marginRight: spacing[mr],
+              marginBottom: spacing[mb],
+              marginLeft: spacing[ml]
+            },
+            {
+              width: "100%",
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: colors[color],
+              borderRadius: roundedMap[rounded]
+            }
+          ]}
+        >
+          <Text color={textColor} variants="h5">
+            {title}
+          </Text>
+        </View>
+        <View
+          style={[
+            {
+              padding: spacing[p],
+              paddingHorizontal: spacing[px],
+              paddingVertical: spacing[py],
+              paddingTop: spacing[pt],
+              paddingRight: spacing[pr],
+              paddingBottom: spacing[pb],
+              paddingLeft: spacing[pl],
+              margin: spacing[m],
+              marginHorizontal: spacing[mx],
+              marginVertical: spacing[my],
+              marginTop: spacing[mt],
+              marginRight: spacing[mr],
+              marginBottom: spacing[mb],
+              marginLeft: spacing[ml]
+            },
+            {
+              position: "absolute",
+              top: 6,
+              bottom: -6,
+              right: -6,
+              backgroundColor: colors[shadowColor],
+              borderWidth: 1,
+              width: "100%",
+              zIndex: -10,
+              borderRadius: roundedMap[rounded]
+            }
+          ]}
+        />
       </View>
     </TouchableNativeFeedback>
   );
