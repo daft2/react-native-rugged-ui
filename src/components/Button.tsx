@@ -11,6 +11,7 @@ type ButtonProps = SpacingProps &
     textColor?: ColorsOptions;
     shadowColor?: ColorsOptions;
     rounded?: "xs" | "sm" | "md" | "lg" | "xl" | "full" | "none";
+    shadowPosition?: "bottom-right" | "bottom-left" | "top-right" | "top-left";
   };
 
 const Button = ({
@@ -33,6 +34,7 @@ const Button = ({
   textColor = "neutral",
   shadowColor = "black",
   rounded = "none",
+  shadowPosition = "bottom-right",
   ...props
 }: ButtonProps) => {
   const { spacing, colors } = useTheme();
@@ -45,6 +47,29 @@ const Button = ({
     xl: 20,
     full: "100%",
     none: undefined
+  };
+
+  const shadowPositionMap = {
+    "bottom-right": {
+      top: 6,
+      bottom: -6,
+      right: -6
+    },
+    "bottom-left": {
+      top: 6,
+      bottom: -6,
+      left: -6
+    },
+    "top-right": {
+      top: -6,
+      bottom: 6,
+      right: -6
+    },
+    "top-left": {
+      top: -6,
+      bottom: 6,
+      left: -6
+    }
   };
 
   return (
@@ -103,10 +128,10 @@ const Button = ({
               marginLeft: spacing[ml]
             },
             {
+              ...shadowPositionMap[shadowPosition]
+            },
+            {
               position: "absolute",
-              top: 6,
-              bottom: -6,
-              right: -6,
               backgroundColor: colors[shadowColor],
               borderWidth: 1,
               width: "100%",
