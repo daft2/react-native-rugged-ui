@@ -136,7 +136,6 @@ const Button = ({
           {
             position: "absolute",
             backgroundColor: colors[shadowColor],
-            borderWidth: 1,
             width: "100%",
             zIndex: -10,
             borderRadius: roundedMap[rounded]
