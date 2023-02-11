@@ -1,5 +1,10 @@
-import { View, TouchableNativeFeedback, ViewStyle } from "react-native";
-import React from "react";
+import {
+  View,
+  TouchableNativeFeedback,
+  ViewStyle,
+  Animated
+} from "react-native";
+import React, { useRef, useEffect, useState } from "react";
 import { ColorsOptions, SpacingProps } from "../types";
 import Text from "./Text";
 import { useTheme } from "../provider/ThemeProvider";
@@ -14,6 +19,25 @@ type ButtonProps = SpacingProps &
     shadowPosition?: "bottom-right" | "bottom-left" | "top-right" | "top-left";
     shadowStyle?: ViewStyle;
   };
+
+const STARTING_VALUE = {
+  "bottom-right": {
+    x: 6,
+    y: 6
+  },
+  "bottom-left": {
+    x: -6,
+    y: 6
+  },
+  "top-right": {
+    x: 6,
+    y: -6
+  },
+  "top-left": {
+    x: -6,
+    y: -6
+  }
+};
 
 const Button = ({
   p = "none",
@@ -40,6 +64,9 @@ const Button = ({
   ...props
 }: ButtonProps) => {
   const { spacing, colors } = useTheme();
+  const [translation, setTranslation] = useState(
+    new Animated.ValueXY(STARTING_VALUE[shadowPosition])
+  );
 
   const roundedMap = {
     xs: 2,
@@ -51,32 +78,31 @@ const Button = ({
     none: undefined
   };
 
-  const shadowPositionMap = {
-    "bottom-right": {
-      top: 6,
-      bottom: -6,
-      right: -6
-    },
-    "bottom-left": {
-      top: 6,
-      bottom: -6,
-      left: -6
-    },
-    "top-right": {
-      top: -6,
-      bottom: 6,
-      right: -6
-    },
-    "top-left": {
-      top: -6,
-      bottom: 6,
-      left: -6
-    }
+  const onPress = () => {
+    const translateAnimStart = Animated.timing(translation, {
+      toValue: { x: 0, y: 0 },
+      duration: 200,
+      useNativeDriver: true
+    });
+
+    const translateAnimFinish = Animated.timing(translation, {
+      toValue: STARTING_VALUE[shadowPosition],
+      duration: 200,
+      useNativeDriver: true
+    });
+
+    translateAnimStart.start((result) => {
+      if (result.finished) translateAnimFinish.start();
+    });
   };
+
+  useEffect(() => {
+    setTranslation(new Animated.ValueXY(STARTING_VALUE[shadowPosition]));
+  }, [shadowPosition]);
 
   return (
     <View style={{ position: "relative" }}>
-      <TouchableNativeFeedback>
+      <TouchableNativeFeedback onPress={onPress}>
         <View
           {...props}
           style={[
@@ -112,7 +138,7 @@ const Button = ({
           </Text>
         </View>
       </TouchableNativeFeedback>
-      <View
+      <Animated.View
         style={[
           {
             padding: spacing[p],
@@ -131,14 +157,19 @@ const Button = ({
             marginLeft: spacing[ml]
           },
           {
-            ...shadowPositionMap[shadowPosition]
+            transform: [
+              { translateX: translation.x },
+              { translateY: translation.y }
+            ]
           },
           {
             position: "absolute",
             backgroundColor: colors[shadowColor],
             width: "100%",
             zIndex: -10,
-            borderRadius: roundedMap[rounded]
+            borderRadius: roundedMap[rounded],
+            top: 0,
+            bottom: 0
           },
           { ...shadowStyle }
         ]}
