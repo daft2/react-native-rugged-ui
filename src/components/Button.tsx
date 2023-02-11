@@ -4,7 +4,7 @@ import {
   ViewStyle,
   Animated
 } from "react-native";
-import React, { useRef, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ColorsOptions, SpacingProps } from "../types";
 import Text from "./Text";
 import { useTheme } from "../provider/ThemeProvider";
