@@ -10,7 +10,7 @@ import Text from "./Text";
 import { useTheme } from "../provider/ThemeProvider";
 
 type ButtonProps = SpacingProps &
-  React.ComponentProps<typeof View> & {
+  React.ComponentProps<typeof TouchableNativeFeedback> & {
     title: string;
     color?: ColorsOptions;
     textColor?: ColorsOptions;
@@ -18,6 +18,8 @@ type ButtonProps = SpacingProps &
     shadowColor?: ColorsOptions;
     shadowPosition?: "bottom-right" | "bottom-left" | "top-right" | "top-left";
     shadowStyle?: ViewStyle;
+    noShadow?: boolean;
+    disableAnimation?: boolean;
   };
 
 const STARTING_VALUE = {
@@ -61,6 +63,8 @@ const Button = ({
   rounded = "none",
   shadowPosition = "bottom-right",
   shadowStyle,
+  noShadow = false,
+  disableAnimation = false,
   ...props
 }: ButtonProps) => {
   const { spacing, colors } = useTheme();
@@ -78,7 +82,7 @@ const Button = ({
     none: undefined
   };
 
-  const onPress = () => {
+  const handlePress = (event) => {
     const translateAnimStart = Animated.timing(translation, {
       toValue: { x: 0, y: 0 },
       duration: 200,
@@ -92,7 +96,10 @@ const Button = ({
     });
 
     translateAnimStart.start((result) => {
-      if (result.finished) translateAnimFinish.start();
+      if (result.finished) {
+        translateAnimFinish.start();
+        props.onPress(event);
+      }
     });
   };
 
@@ -102,9 +109,11 @@ const Button = ({
 
   return (
     <View style={{ position: "relative" }}>
-      <TouchableNativeFeedback onPress={onPress}>
+      <TouchableNativeFeedback
+        {...props}
+        onPress={disableAnimation || noShadow ? props.onPress : handlePress}
+      >
         <View
-          {...props}
           style={[
             props.style,
             // Spacing Styling
@@ -138,42 +147,44 @@ const Button = ({
           </Text>
         </View>
       </TouchableNativeFeedback>
-      <Animated.View
-        style={[
-          {
-            padding: spacing[p],
-            paddingTop: spacing[pt],
-            paddingRight: spacing[pr],
-            paddingBottom: spacing[pb],
-            paddingLeft: spacing[pl],
-            paddingHorizontal: spacing[px],
-            paddingVertical: spacing[py],
-            margin: spacing[m],
-            marginHorizontal: spacing[mx],
-            marginVertical: spacing[my],
-            marginTop: spacing[mt],
-            marginRight: spacing[mr],
-            marginBottom: spacing[mb],
-            marginLeft: spacing[ml]
-          },
-          {
-            transform: [
-              { translateX: translation.x },
-              { translateY: translation.y }
-            ]
-          },
-          {
-            position: "absolute",
-            backgroundColor: colors[shadowColor],
-            width: "100%",
-            zIndex: -10,
-            borderRadius: roundedMap[rounded],
-            top: 0,
-            bottom: 0
-          },
-          { ...shadowStyle }
-        ]}
-      />
+      {!noShadow && (
+        <Animated.View
+          style={[
+            {
+              padding: spacing[p],
+              paddingTop: spacing[pt],
+              paddingRight: spacing[pr],
+              paddingBottom: spacing[pb],
+              paddingLeft: spacing[pl],
+              paddingHorizontal: spacing[px],
+              paddingVertical: spacing[py],
+              margin: spacing[m],
+              marginHorizontal: spacing[mx],
+              marginVertical: spacing[my],
+              marginTop: spacing[mt],
+              marginRight: spacing[mr],
+              marginBottom: spacing[mb],
+              marginLeft: spacing[ml]
+            },
+            {
+              transform: [
+                { translateX: translation.x },
+                { translateY: translation.y }
+              ]
+            },
+            {
+              position: "absolute",
+              backgroundColor: colors[shadowColor],
+              width: "100%",
+              zIndex: -10,
+              borderRadius: roundedMap[rounded],
+              top: 0,
+              bottom: 0
+            },
+            { ...shadowStyle }
+          ]}
+        />
+      )}
     </View>
   );
 };
