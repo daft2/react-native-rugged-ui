@@ -20,8 +20,9 @@ type ButtonProps = SpacingProps &
     borderColor?: ColorsOptions;
     shadowColor?: ColorsOptions;
     shadowPosition?: "bottom-right" | "bottom-left" | "top-right" | "top-left";
-    shadowStyle?: ViewStyle;
     shadowLength?: number;
+    shadowBorderColor?: ColorsOptions;
+    shadowStyle?: ViewStyle;
     noShadow?: boolean;
     disableAnimation?: boolean;
   };
@@ -50,8 +51,9 @@ const Button = ({
   borderWidth = 1,
   borderColor = "black",
   shadowPosition = "bottom-right",
-  shadowStyle,
   shadowLength = 6,
+  shadowBorderColor,
+  shadowStyle,
   noShadow = false,
   disableAnimation = false,
   ...props
@@ -188,6 +190,10 @@ const Button = ({
               width: "100%",
               zIndex: -10,
               borderRadius: roundedMap[rounded],
+              borderWidth: borderWidth,
+              borderColor: shadowBorderColor
+                ? colors[shadowBorderColor]
+                : colors[shadowColor],
               top: 0,
               bottom: 0
             },
