@@ -15,6 +15,9 @@ type ButtonProps = SpacingProps &
     color?: ColorsOptions;
     textColor?: ColorsOptions;
     rounded?: "xs" | "sm" | "md" | "lg" | "xl" | "full" | "none";
+    noBorder?: boolean;
+    borderWidth?: number;
+    borderColor?: ColorsOptions;
     shadowColor?: ColorsOptions;
     shadowPosition?: "bottom-right" | "bottom-left" | "top-right" | "top-left";
     shadowStyle?: ViewStyle;
@@ -61,6 +64,9 @@ const Button = ({
   textColor = "neutral",
   shadowColor = "black",
   rounded = "none",
+  noBorder = false,
+  borderWidth = 1,
+  borderColor = "black",
   shadowPosition = "bottom-right",
   shadowStyle,
   noShadow = false,
@@ -137,7 +143,9 @@ const Button = ({
               justifyContent: "center",
               alignItems: "center",
               backgroundColor: colors[color],
-              borderRadius: roundedMap[rounded]
+              borderRadius: roundedMap[rounded],
+              borderWidth: noBorder ? 0 : borderWidth,
+              borderColor: colors[borderColor]
             },
             props.style
           ]}
