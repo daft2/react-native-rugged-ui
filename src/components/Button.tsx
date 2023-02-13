@@ -115,7 +115,6 @@ const Button = ({
       >
         <View
           style={[
-            props.style,
             // Spacing Styling
             {
               padding: spacing[p],
@@ -139,7 +138,8 @@ const Button = ({
               alignItems: "center",
               backgroundColor: colors[color],
               borderRadius: roundedMap[rounded]
-            }
+            },
+            props.style
           ]}
         >
           <Text color={textColor} variants="h5">
