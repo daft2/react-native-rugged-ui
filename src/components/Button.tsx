@@ -98,7 +98,7 @@ const Button = ({
     translateAnimStart.start((result) => {
       if (result.finished) {
         translateAnimFinish.start();
-        props.onPress(event);
+        if (props.onPress) props.onPress(event);
       }
     });
   };
