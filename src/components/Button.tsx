@@ -21,28 +21,10 @@ type ButtonProps = SpacingProps &
     shadowColor?: ColorsOptions;
     shadowPosition?: "bottom-right" | "bottom-left" | "top-right" | "top-left";
     shadowStyle?: ViewStyle;
+    shadowLength?: number;
     noShadow?: boolean;
     disableAnimation?: boolean;
   };
-
-const STARTING_VALUE = {
-  "bottom-right": {
-    x: 6,
-    y: 6
-  },
-  "bottom-left": {
-    x: -6,
-    y: 6
-  },
-  "top-right": {
-    x: 6,
-    y: -6
-  },
-  "top-left": {
-    x: -6,
-    y: -6
-  }
-};
 
 const Button = ({
   p = "none",
@@ -69,10 +51,30 @@ const Button = ({
   borderColor = "black",
   shadowPosition = "bottom-right",
   shadowStyle,
+  shadowLength = 6,
   noShadow = false,
   disableAnimation = false,
   ...props
 }: ButtonProps) => {
+  const STARTING_VALUE = {
+    "bottom-right": {
+      x: shadowLength,
+      y: shadowLength
+    },
+    "bottom-left": {
+      x: -1 * shadowLength,
+      y: shadowLength
+    },
+    "top-right": {
+      x: shadowLength,
+      y: -1 * shadowLength
+    },
+    "top-left": {
+      x: -1 * shadowLength,
+      y: -1 * shadowLength
+    }
+  };
+
   const { spacing, colors } = useTheme();
   const [translation, setTranslation] = useState(
     new Animated.ValueXY(STARTING_VALUE[shadowPosition])
@@ -111,7 +113,7 @@ const Button = ({
 
   useEffect(() => {
     setTranslation(new Animated.ValueXY(STARTING_VALUE[shadowPosition]));
-  }, [shadowPosition]);
+  }, [shadowPosition, shadowLength]);
 
   return (
     <View style={{ position: "relative" }}>
