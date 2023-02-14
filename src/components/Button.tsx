@@ -1,16 +1,11 @@
-import {
-  View,
-  TouchableNativeFeedback,
-  ViewStyle,
-  Animated
-} from "react-native";
+import { View, Pressable, ViewStyle, Animated } from "react-native";
 import React, { useEffect, useState } from "react";
 import { ColorsOptions, SpacingProps } from "../types";
 import Text from "./Text";
 import { useTheme } from "../provider/ThemeProvider";
 
 type ButtonProps = SpacingProps &
-  React.ComponentProps<typeof TouchableNativeFeedback> & {
+  React.ComponentProps<typeof Pressable> & {
     title: string;
     color?: ColorsOptions;
     textColor?: ColorsOptions;
@@ -18,6 +13,9 @@ type ButtonProps = SpacingProps &
     noBorder?: boolean;
     borderWidth?: number;
     borderColor?: ColorsOptions;
+    width?: number | string;
+    height?: number | string;
+    style?: ViewStyle;
     shadowColor?: ColorsOptions;
     shadowPosition?: "bottom-right" | "bottom-left" | "top-right" | "top-left";
     shadowLength?: number;
@@ -50,6 +48,9 @@ const Button = ({
   noBorder = false,
   borderWidth = 1,
   borderColor = "black",
+  width = "100%",
+  height,
+  style,
   shadowPosition = "bottom-right",
   shadowLength = 6,
   shadowBorderColor,
@@ -118,8 +119,12 @@ const Button = ({
   }, [shadowPosition, shadowLength]);
 
   return (
-    <View style={{ position: "relative" }}>
-      <TouchableNativeFeedback
+    <View
+      style={{
+        position: "relative"
+      }}
+    >
+      <Pressable
         {...props}
         onPress={disableAnimation || noShadow ? props.onPress : handlePress}
       >
@@ -143,7 +148,8 @@ const Button = ({
               marginLeft: spacing[ml]
             },
             {
-              width: "100%",
+              width: width,
+              height: height,
               justifyContent: "center",
               alignItems: "center",
               backgroundColor: colors[color],
@@ -151,14 +157,14 @@ const Button = ({
               borderWidth: noBorder ? 0 : borderWidth,
               borderColor: colors[borderColor]
             },
-            props.style
+            style
           ]}
         >
           <Text color={textColor} variants="h5">
             {title}
           </Text>
         </View>
-      </TouchableNativeFeedback>
+      </Pressable>
       {!noShadow && (
         <Animated.View
           style={[
@@ -185,9 +191,10 @@ const Button = ({
               ]
             },
             {
+              width: width,
+              height: height,
               position: "absolute",
               backgroundColor: colors[shadowColor],
-              width: "100%",
               zIndex: -10,
               borderRadius: roundedMap[rounded],
               borderWidth: borderWidth,
