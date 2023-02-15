@@ -16,6 +16,8 @@ type ButtonProps = SpacingProps &
     width?: number | string;
     height?: number | string;
     style?: ViewStyle;
+    leftContent?: React.ReactNode;
+    rightContent?: React.ReactNode;
     shadowColor?: ColorsOptions;
     shadowPosition?: "bottom-right" | "bottom-left" | "top-right" | "top-left";
     shadowLength?: number;
@@ -51,6 +53,8 @@ const Button = ({
   width = "100%",
   height,
   style,
+  leftContent,
+  rightContent,
   shadowPosition = "bottom-right",
   shadowLength = 6,
   shadowBorderColor,
@@ -155,14 +159,24 @@ const Button = ({
               backgroundColor: colors[color],
               borderRadius: roundedMap[rounded],
               borderWidth: noBorder ? 0 : borderWidth,
-              borderColor: colors[borderColor]
+              borderColor: colors[borderColor],
+              flexDirection: "row"
             },
             style
           ]}
         >
-          <Text color={textColor} variants="h5">
+          {leftContent}
+          <Text
+            color={textColor}
+            variants="h5"
+            style={{
+              marginLeft: leftContent ? 5 : 0,
+              marginRight: rightContent ? 5 : 0
+            }}
+          >
             {title}
           </Text>
+          {rightContent}
         </View>
       </Pressable>
       {!noShadow && (
