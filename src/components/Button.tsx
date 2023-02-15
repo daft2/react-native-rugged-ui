@@ -63,6 +63,7 @@ const Button = ({
   shadowStyle,
   noShadow = false,
   disableAnimation = false,
+  disabled = false,
   ...props
 }: ButtonProps) => {
   const STARTING_VALUE = {
@@ -133,6 +134,7 @@ const Button = ({
       <Pressable
         {...props}
         onPress={disableAnimation || noShadow ? props.onPress : handlePress}
+        disabled={disabled}
       >
         <View
           style={[
@@ -162,7 +164,8 @@ const Button = ({
               borderRadius: roundedMap[rounded],
               borderWidth: noBorder ? 0 : borderWidth,
               borderColor: colors[borderColor],
-              flexDirection: "row"
+              flexDirection: "row",
+              opacity: disabled ? 0.4 : 1
             },
             style
           ]}
@@ -177,7 +180,7 @@ const Button = ({
           {rightContent}
         </View>
       </Pressable>
-      {!noShadow && (
+      {!noShadow && !disabled && (
         <Animated.View
           style={[
             {
