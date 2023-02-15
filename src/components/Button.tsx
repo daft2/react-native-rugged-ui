@@ -95,9 +95,8 @@ const Button = ({
   };
 
   const { spacing, colors } = useTheme();
-  const [translation, setTranslation] = useState(
-    new Animated.ValueXY(STARTING_VALUE[shadowPosition])
-  );
+  const animatedValue = new Animated.ValueXY(STARTING_VALUE[shadowPosition]);
+  const [translation, setTranslation] = useState(animatedValue);
 
   const roundedMap = {
     xs: 2,
