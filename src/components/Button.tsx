@@ -1,4 +1,4 @@
-import { View, Pressable, ViewStyle, Animated } from "react-native";
+import { View, Pressable, ViewStyle, Animated, TextStyle } from "react-native";
 import React, { useEffect, useState } from "react";
 import { ColorsOptions, SpacingProps } from "../types";
 import Text from "./Text";
@@ -9,6 +9,7 @@ type ButtonProps = SpacingProps &
     title: string;
     color?: ColorsOptions;
     textColor?: ColorsOptions;
+    textStyle?: TextStyle;
     rounded?: "xs" | "sm" | "md" | "lg" | "xl" | "full" | "none";
     noBorder?: boolean;
     borderWidth?: number;
@@ -45,6 +46,7 @@ const Button = ({
   title,
   color = "dark",
   textColor = "neutral",
+  textStyle,
   shadowColor = "black",
   rounded = "none",
   noBorder = false,
@@ -169,10 +171,13 @@ const Button = ({
           <Text
             color={textColor}
             variants="h5"
-            style={{
-              marginLeft: leftContent ? 5 : 0,
-              marginRight: rightContent ? 5 : 0
-            }}
+            style={[
+              {
+                marginLeft: leftContent ? 5 : 0,
+                marginRight: rightContent ? 5 : 0
+              },
+              textStyle
+            ]}
           >
             {title}
           </Text>
