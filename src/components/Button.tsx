@@ -6,7 +6,7 @@ import { useTheme } from "../provider/ThemeProvider";
 
 type ButtonProps = SpacingProps &
   React.ComponentProps<typeof Pressable> & {
-    title: string;
+    children: string | React.ReactNode;
     color?: ColorsOptions;
     textColor?: ColorsOptions;
     textStyle?: TextStyle;
@@ -43,7 +43,7 @@ const Button = ({
   mr = "none",
   mb = "none",
   ml = "none",
-  title,
+  children,
   color = "dark",
   textColor = "neutral",
   textStyle,
@@ -168,19 +168,22 @@ const Button = ({
           ]}
         >
           {leftContent}
-          <Text
-            color={textColor}
-            variants="h5"
-            style={[
-              {
-                marginLeft: leftContent ? 5 : 0,
-                marginRight: rightContent ? 5 : 0
-              },
-              textStyle
-            ]}
-          >
-            {title}
-          </Text>
+          {typeof children === "string" && (
+            <Text
+              color={textColor}
+              variants="h5"
+              style={[
+                {
+                  marginLeft: leftContent ? 5 : 0,
+                  marginRight: rightContent ? 5 : 0
+                },
+                textStyle
+              ]}
+            >
+              {children}
+            </Text>
+          )}
+          {typeof children !== "string" && children}
           {rightContent}
         </View>
       </Pressable>
