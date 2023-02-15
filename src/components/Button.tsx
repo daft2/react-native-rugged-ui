@@ -143,7 +143,7 @@ const Button = ({
       <Pressable
         {...props}
         onPress={disableAnimation || noShadow ? props.onPress : handlePress}
-        disabled={disabled}
+        disabled={disabled || isLoading}
       >
         <View
           style={[
