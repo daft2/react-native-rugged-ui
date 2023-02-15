@@ -1,4 +1,11 @@
-import { View, Pressable, ViewStyle, Animated, TextStyle } from "react-native";
+import {
+  View,
+  Pressable,
+  ViewStyle,
+  Animated,
+  TextStyle,
+  ActivityIndicator
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import { ColorsOptions, SpacingProps } from "../types";
 import Text from "./Text";
@@ -26,6 +33,7 @@ type ButtonProps = SpacingProps &
     shadowStyle?: ViewStyle;
     noShadow?: boolean;
     disableAnimation?: boolean;
+    isLoading?: boolean;
   };
 
 const Button = ({
@@ -64,6 +72,7 @@ const Button = ({
   noShadow = false,
   disableAnimation = false,
   disabled = false,
+  isLoading = false,
   ...props
 }: ButtonProps) => {
   const STARTING_VALUE = {
@@ -170,6 +179,9 @@ const Button = ({
             style
           ]}
         >
+          {isLoading && (
+            <ActivityIndicator color={textColor} style={{ marginRight: 10 }} />
+          )}
           {leftContent}
           {typeof children === "string" && (
             <Text color={textColor} variants="h5" style={textStyle}>
