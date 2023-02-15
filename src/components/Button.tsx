@@ -169,17 +169,7 @@ const Button = ({
         >
           {leftContent}
           {typeof children === "string" && (
-            <Text
-              color={textColor}
-              variants="h5"
-              style={[
-                {
-                  marginLeft: leftContent ? 5 : 0,
-                  marginRight: rightContent ? 5 : 0
-                },
-                textStyle
-              ]}
-            >
+            <Text color={textColor} variants="h5" style={textStyle}>
               {children}
             </Text>
           )}
