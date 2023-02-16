@@ -104,7 +104,11 @@ const Button = ({
     md: 8,
     lg: 10,
     xl: 20,
-    full: "100%",
+    "2xl": 40,
+    "3xl": 60,
+    "4xl": 80,
+    "5xl": 100,
+    full: 9999,
     none: undefined
   };
 
