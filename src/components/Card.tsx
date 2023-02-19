@@ -7,6 +7,8 @@ type CardProps = SpacingProps &
   React.ComponentProps<typeof View> & {
     children: React.ReactNode;
     backgroundColor?: ColorsOptions;
+    borderWidth?: number;
+    borderColor?: ColorsOptions;
     style?: ViewStyle;
     shadowPosition?: "bottom-right" | "bottom-left" | "top-right" | "top-left";
     shadowLength?: number;
@@ -30,6 +32,8 @@ const Card = ({
   mb = "none",
   ml = "none",
   backgroundColor = "white",
+  borderWidth = 1,
+  borderColor,
   shadowPosition = "bottom-right",
   shadowLength = 6,
   shadowStyle,
@@ -94,8 +98,8 @@ const Card = ({
           {
             flex: 1,
             backgroundColor: colors[backgroundColor],
-            borderWidth: 1,
-            borderColor: colors[shadowColor]
+            borderWidth: borderWidth,
+            borderColor: borderColor ? colors[borderColor] : colors[shadowColor]
           },
           style
         ]}
