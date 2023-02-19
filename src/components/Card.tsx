@@ -9,6 +9,8 @@ type CardProps = SpacingProps &
     backgroundColor?: ColorsOptions;
     borderWidth?: number;
     borderColor?: ColorsOptions;
+    width?: number | string;
+    height?: number | string;
     style?: ViewStyle;
     shadowPosition?: "bottom-right" | "bottom-left" | "top-right" | "top-left";
     shadowLength?: number;
@@ -34,6 +36,8 @@ const Card = ({
   backgroundColor = "white",
   borderWidth = 1,
   borderColor,
+  width,
+  height,
   shadowPosition = "bottom-right",
   shadowLength = 6,
   shadowStyle,
@@ -95,11 +99,16 @@ const Card = ({
             marginBottom: spacing[mb],
             marginLeft: spacing[ml]
           },
+          // automatically set flex to 1 if height isn't set
+          !height && { flex: 1 },
           {
-            flex: 1,
             backgroundColor: colors[backgroundColor],
             borderWidth: borderWidth,
-            borderColor: borderColor ? colors[borderColor] : colors[shadowColor]
+            borderColor: borderColor
+              ? colors[borderColor]
+              : colors[shadowColor],
+            width: width,
+            height: height
           },
           style
         ]}
@@ -128,7 +137,9 @@ const Card = ({
             ...shadowPositionMap[shadowPosition],
             position: "absolute",
             backgroundColor: colors[shadowColor],
-            zIndex: -10
+            zIndex: -10,
+            width: width,
+            height: height
           },
           { ...shadowStyle }
         ]}
