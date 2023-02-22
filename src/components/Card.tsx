@@ -74,12 +74,33 @@ const Card = ({
     }
   };
 
+  const containerMarginStyle = {
+    "bottom-right": {
+      marginBottom: shadowLength,
+      marginRight: shadowLength
+    },
+    "bottom-left": {
+      marginBottom: shadowLength,
+      marginLeft: shadowLength
+    },
+    "top-right": {
+      marginTop: shadowLength,
+      marginRight: shadowLength
+    },
+    "top-left": {
+      marginTop: shadowLength,
+      marginLeft: shadowLength
+    }
+  };
+
   return (
     <View
-      style={{
-        position: "relative",
-        marginBottom: shadowLength
-      }}
+      style={[
+        {
+          position: "relative"
+        },
+        containerMarginStyle[shadowPosition]
+      ]}
     >
       <View
         style={[
