@@ -78,7 +78,7 @@ const Card = ({
     <View
       style={{
         position: "relative",
-        flex: 1
+        marginBottom: shadowLength
       }}
     >
       <View
