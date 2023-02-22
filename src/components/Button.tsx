@@ -112,6 +112,25 @@ const Button = ({
     none: undefined
   };
 
+  const containerMarginStyle = {
+    "bottom-right": {
+      marginBottom: shadowLength,
+      marginRight: shadowLength
+    },
+    "bottom-left": {
+      marginBottom: shadowLength,
+      marginLeft: shadowLength
+    },
+    "top-right": {
+      marginTop: shadowLength,
+      marginRight: shadowLength
+    },
+    "top-left": {
+      marginTop: shadowLength,
+      marginLeft: shadowLength
+    }
+  };
+
   const handlePress = (event) => {
     const translateAnimStart = Animated.timing(translation, {
       toValue: { x: 0, y: 0 },
@@ -139,9 +158,12 @@ const Button = ({
 
   return (
     <View
-      style={{
-        position: "relative"
-      }}
+      style={[
+        {
+          position: "relative"
+        },
+        containerMarginStyle[shadowPosition]
+      ]}
     >
       <Pressable
         {...props}
