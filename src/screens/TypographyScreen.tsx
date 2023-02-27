@@ -1,8 +1,8 @@
 import { StyleSheet } from "react-native";
-import { View } from "../components/Themed";
 import { RootTabScreenProps } from "../../types";
-import Text from "../components/Text";
 import React from "react";
+import { View } from "react-native";
+import Text from "../../components/Text";
 
 export default function TypographyScreen({
   navigation
