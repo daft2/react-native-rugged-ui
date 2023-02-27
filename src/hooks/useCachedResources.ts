@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 type CacheResourcesType = {
   fonts?: Record<string, FontSource>;
 };
+
 export default function useCachedResources({ fonts }: CacheResourcesType) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
 

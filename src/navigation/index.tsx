@@ -9,9 +9,6 @@ import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
 import { Pressable } from "react-native";
-
-import Colors from "../constants/Colors";
-import useColorScheme from "../hooks/useColorScheme";
 import ModalScreen from "../screens/ModalScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import TabTwoScreen from "../screens/TabTwoScreen";
@@ -20,12 +17,11 @@ import {
   RootTabParamList,
   RootTabScreenProps
 } from "../../types";
-import LinkingConfiguration from "./LinkingConfiguration";
 import TypographyScreen from "../screens/TypographyScreen";
 
 export default function Navigation() {
   return (
-    <NavigationContainer linking={LinkingConfiguration} theme={DefaultTheme}>
+    <NavigationContainer theme={DefaultTheme}>
       <RootNavigator />
     </NavigationContainer>
   );
@@ -64,15 +60,8 @@ function RootNavigator() {
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 function BottomTabNavigator() {
-  const colorScheme = useColorScheme();
-
   return (
-    <BottomTab.Navigator
-      initialRouteName="Typography"
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme].tint
-      }}
-    >
+    <BottomTab.Navigator initialRouteName="Typography">
       <BottomTab.Screen
         name="Typography"
         component={TypographyScreen}
@@ -89,7 +78,6 @@ function BottomTabNavigator() {
               <FontAwesome
                 name="info-circle"
                 size={25}
-                color={Colors[colorScheme].text}
                 style={{ marginRight: 15 }}
               />
             </Pressable>
