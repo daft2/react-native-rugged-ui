@@ -4,12 +4,13 @@ import {
   ViewStyle,
   Animated,
   TextStyle,
-  ActivityIndicator
+  ActivityIndicator,
+  GestureResponderEvent
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import { ColorsOptions, SpacingProps } from "../types";
 import Text from "./Text";
 import { useTheme } from "../provider/ThemeProvider";
+import type { SpacingProps, ColorsOptions } from "../types/index";
 
 type ButtonProps = SpacingProps &
   React.ComponentProps<typeof Pressable> & {
@@ -75,7 +76,7 @@ const Button = ({
   isLoading = false,
   ...props
 }: ButtonProps) => {
-  const STARTING_VALUE = {
+  const STARTING_VALUE: { [key: string]: { x: number; y: number } } = {
     "bottom-right": {
       x: shadowLength,
       y: shadowLength
@@ -98,7 +99,7 @@ const Button = ({
   const animatedValue = new Animated.ValueXY(STARTING_VALUE[shadowPosition]);
   const [translation, setTranslation] = useState(animatedValue);
 
-  const roundedMap = {
+  const roundedMap: { [key: string]: number | undefined } = {
     xs: 2,
     sm: 4,
     md: 8,
@@ -112,7 +113,7 @@ const Button = ({
     none: undefined
   };
 
-  const containerMarginStyle = {
+  const containerMarginStyle: { [key: string]: { [key: string]: number } } = {
     "bottom-right": {
       marginBottom: shadowLength,
       marginRight: shadowLength
@@ -131,7 +132,7 @@ const Button = ({
     }
   };
 
-  const handlePress = (event) => {
+  const handlePress = (event: GestureResponderEvent) => {
     const translateAnimStart = Animated.timing(translation, {
       toValue: { x: 0, y: 0 },
       duration: 200,
@@ -144,7 +145,7 @@ const Button = ({
       useNativeDriver: true
     });
 
-    translateAnimStart.start((result) => {
+    translateAnimStart.start((result: Animated.EndResult) => {
       if (result.finished) {
         translateAnimFinish.start();
         if (props.onPress) props.onPress(event);
