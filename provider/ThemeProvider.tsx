@@ -6,9 +6,9 @@ import Theme from "../styles/Theme";
 
 type ContextProps = {
   theme: "light" | "dark";
-  spacing?: typeof Theme["spacing"];
-  colors?: typeof Theme["colors"];
-  fonts?: typeof Theme["fonts"];
+  spacing: typeof Theme["spacing"];
+  colors: typeof Theme["colors"];
+  fonts: typeof Theme["fonts"];
   setTheme?: (theme: "light" | "dark") => void;
   isDarkMode?: boolean;
 };
@@ -16,16 +16,16 @@ type ContextProps = {
 type ThemeProviderProps = {
   children?: React.ReactNode;
   theme?: "light" | "dark";
-  spacing?: typeof Theme["spacing"];
-  colors?: typeof Theme["colors"];
-  fonts?: typeof Theme["fonts"];
   setTheme?: (theme: "light" | "dark") => void;
   isDarkMode?: boolean;
   customFonts?: Record<string, FontSource>;
 };
 
 const ThemeContext = React.createContext<ContextProps>({
-  theme: "light"
+  theme: "light",
+  spacing: Theme.spacing,
+  colors: Theme.colors,
+  fonts: Theme.fonts
 });
 
 const useTheme = () => React.useContext(ThemeContext);
@@ -33,9 +33,6 @@ const useTheme = () => React.useContext(ThemeContext);
 const ThemeProvider = ({
   children,
   customFonts,
-  spacing,
-  colors,
-  fonts,
   ...props
 }: ThemeProviderProps) => {
   const [theme, setTheme] = useState<ContextProps["theme"]>(
@@ -49,11 +46,11 @@ const ThemeProvider = ({
     <ThemeContext.Provider
       value={{
         theme,
+        spacing: Theme.spacing,
+        colors: Theme.colors,
+        fonts: Theme.fonts,
         isDarkMode,
-        setTheme,
-        spacing: spacing ?? Theme.spacing,
-        colors: colors ?? Theme.colors,
-        fonts: fonts ?? Theme.fonts
+        setTheme
       }}
     >
       {!isLoadingComplete && <LoadingScreen />}
