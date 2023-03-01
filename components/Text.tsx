@@ -1,6 +1,6 @@
 import { View, Text as RNText } from "react-native";
 import React from "react";
-import { ColorsOptions, SpacingProps } from "../types";
+import type { SpacingProps, ColorsOptions } from "../types/index";
 import { useTheme } from "../provider/ThemeProvider";
 
 type TextProps = SpacingProps &

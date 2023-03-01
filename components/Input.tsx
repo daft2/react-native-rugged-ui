@@ -1,7 +1,7 @@
 import React from "react";
 import { TextInput, View, ViewStyle } from "react-native";
 import { useTheme } from "../provider/ThemeProvider";
-import { ColorsOptions, SpacingProps } from "../types";
+import type { SpacingProps, ColorsOptions } from "../types/index";
 
 type InputProps = SpacingProps &
   React.ComponentProps<typeof View> & {
