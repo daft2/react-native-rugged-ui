@@ -1,4 +1,4 @@
-export type SpacingProps = {
+type SpacingProps = {
   p?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl";
   px?:
     | "none"
@@ -135,7 +135,7 @@ export type SpacingProps = {
     | "5xl";
 };
 
-export type ColorsOptions =
+type ColorsOptions =
   | "red"
   | "orange"
   | "yellow"
@@ -155,3 +155,5 @@ export type ColorsOptions =
   | "warning"
   | "success"
   | "transparent";
+
+export type { ColorsOptions, SpacingProps };
