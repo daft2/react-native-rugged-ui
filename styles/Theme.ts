@@ -1,4 +1,18 @@
-const Theme = {
+import type { ColorsOptions } from "../types/index";
+
+type ThemeProp = {
+  spacing: {
+    [key: string]: number | undefined;
+  };
+  colors: {
+    [key in ColorsOptions]: string;
+  };
+  fonts: {
+    [key: string]: string;
+  };
+};
+
+const Theme: ThemeProp = {
   spacing: {
     none: undefined,
     xs: 4,
