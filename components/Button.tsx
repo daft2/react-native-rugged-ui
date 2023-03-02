@@ -244,8 +244,6 @@ const Button = ({
               ]
             },
             {
-              width: width,
-              height: height,
               position: "absolute",
               backgroundColor: colors[shadowColor],
               zIndex: -10,
