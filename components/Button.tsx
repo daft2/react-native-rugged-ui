@@ -161,7 +161,9 @@ const Button = ({
     <View
       style={[
         {
-          position: "relative"
+          position: "relative",
+          width: width,
+          height: height
         },
         containerMarginStyle[shadowPosition]
       ]}
@@ -244,6 +246,8 @@ const Button = ({
               ]
             },
             {
+              width: width,
+              height: height,
               position: "absolute",
               backgroundColor: colors[shadowColor],
               zIndex: -10,
