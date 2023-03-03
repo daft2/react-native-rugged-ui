@@ -97,7 +97,9 @@ const Card = ({
     <View
       style={[
         {
-          position: "relative"
+          position: "relative",
+          width: width,
+          height: height
         },
         containerMarginStyle[shadowPosition]
       ]}
